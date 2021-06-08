@@ -1,9 +1,11 @@
 import React from 'react';
-import { Layout } from '@ui-kitten/components';
+import { Layout, Text } from '@ui-kitten/components';
 
 export const RegisterScreen = (props) => {
 
   return (
-    <Layout />
+    <Layout>
+      <Text>Register Screen</Text>
+    </Layout>
   );
 };

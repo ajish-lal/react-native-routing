@@ -1,9 +1,11 @@
 import React from 'react';
-import { Layout } from '@ui-kitten/components';
+import { Layout, Text } from '@ui-kitten/components';
 
 export const ResetPasswordScreen = (props) => {
 
   return (
-    <Layout />
+    <Layout>
+      <Text>Reset Password Screen</Text>
+    </Layout>
   );
 };
