@@ -9,7 +9,7 @@ import { AppNavigator } from './src/navigation/AppNavigator';
 import { AppRoute } from './src/navigation/AppRoutes';
 
 export default function App() {
-  const isAuthorized = false;
+  const isAuthorized = true;
 
   return (
     <Fragment>
