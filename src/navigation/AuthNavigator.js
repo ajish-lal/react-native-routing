@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppRoute } from './AppRoutes';
-import LoginScreen from '../screens/auth/LogInScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen';
 

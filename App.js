@@ -6,6 +6,7 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppNavigator } from './src/navigation/AppNavigator';
+import { AppRoute } from './src/navigation/AppRoutes';
 
 export default function App() {
   const isAuthorized = false;
