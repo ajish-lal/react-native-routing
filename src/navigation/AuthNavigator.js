@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AppRoute } from './app-routes';
+import { AppRoute } from './AppRoutes';
 import { SignInScreen, SignUpScreen, ResetPasswordScreen } from '../screens/auth';
 
 const Stack = createStackNavigator();
