@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Text } from '@ui-kitten/components';
 
-export const FormComponent = (props) => {
+const FormComponent = (props) => {
 
   return (
     <Layout>
@@ -9,3 +9,5 @@ export const FormComponent = (props) => {
     </Layout>
   );
 };
+
+export default FormComponent;

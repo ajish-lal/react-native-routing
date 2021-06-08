@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Text } from '@ui-kitten/components';
 
-export const RegisterScreen = (props) => {
+const RegisterScreen = (props) => {
 
   return (
     <Layout>
@@ -9,3 +9,5 @@ export const RegisterScreen = (props) => {
     </Layout>
   );
 };
+
+export default RegisterScreen;

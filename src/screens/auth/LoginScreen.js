@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Text } from '@ui-kitten/components';
 
-export const LoginScreen = (props) => {
+const LoginScreen = (props) => {
 
   return (
     <Layout>
@@ -9,3 +9,5 @@ export const LoginScreen = (props) => {
     </Layout>
   );
 };
+
+export default LoginScreen;

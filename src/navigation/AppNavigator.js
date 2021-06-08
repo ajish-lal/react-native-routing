@@ -8,6 +8,6 @@ const Stack = createStackNavigator();
 export const AppNavigator = () => (
   <Stack.Navigator headerMode='none'>
     <Stack.Screen name={AppRoute.AUTH} component={AuthNavigator} />
-    <Stack.Screen name={AppRoute.HOME} component={TodoNavigator} />
+    {/* <Stack.Screen name={AppRoute.HOME} component={HomeNavigator} /> */}
   </Stack.Navigator>
 );
