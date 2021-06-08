@@ -7,6 +7,8 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
+  const isAuthorized = false;
+
   return (
     <Fragment>
       <IconRegistry icons={EvaIconsPack} />
