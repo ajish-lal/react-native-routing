@@ -19,7 +19,7 @@ export default function App() {
         <SafeAreaProvider>
           <AppNavigator initialRouteName={isAuthorized ? AppRoute.HOME : AppRoute.AUTH} />
         </SafeAreaProvider>
-        <StatusBar barStyle='light-content' backgroundColor='#2980B7' />
+        {/* <StatusBar barStyle='light-content' backgroundColor='#2980B7' /> */}
       </ApplicationProvider>
     </Fragment>
   );

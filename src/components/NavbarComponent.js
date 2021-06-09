@@ -2,58 +2,61 @@ import React from 'react';
 import {
     Divider,
     Layout,
+    MenuItem,
     OverflowMenu,
     TopNavigation,
     TopNavigationAction,
 } from '@ui-kitten/components';
-import { BackIcon, MoreVerticalIcon } from '../assets/icons';
+import { BackIcon, InfoIcon, LogoutIcon, MenuIcon, MoreVerticalIcon } from '../assets/icons';
 import { StyleSheet } from 'react-native';
 
 
-const NavbarComponent = ({ menu, menuIcon, backIcon, onBackPress, ...topNavigationProps }) => {
+const NavbarComponent = ({ navigation, onBackPress, ...topNavigationProps }) => {
 
     const [menuVisible, setMenuVisible] = React.useState(false);
 
-    const onMenuSelect = (index) => {
-        setMenuVisible(false);
-    };
-
-    const onMenuActionPress = () => {
+    const toggleMenu = () => {
         setMenuVisible(!menuVisible);
     };
 
-    const renderMenuAnchorAction = () => (
-        <TopNavigationAction
-            icon={menuIcon || MoreVerticalIcon}
-            onPress={onMenuActionPress}
-        />
-    );
-
     const renderMenuAction = () => (
-        <OverflowMenu
-            visible={menuVisible}
-            anchor={renderMenuAnchorAction}
-            placement='bottom end'
-            onSelect={onMenuSelect}
-            onBackdropPress={onMenuActionPress}>
-            {menu()}
-        </OverflowMenu>
+        <TopNavigationAction
+            icon={MenuIcon}
+            onPress={navigation.openDrawer()}
+        />
     );
 
     const renderBackAction = () => (
         <TopNavigationAction
-            icon={backIcon || BackIcon}
-            onPress={onBackPress}
+            icon={BackIcon}
+            onPress={navigation.goBack()}
         />
+    );
+
+    const renderMoreAction = () => (
+        <TopNavigationAction icon={MoreVerticalIcon} onPress={toggleMenu} />
+    );
+
+    const renderRightActions = () => (
+        <React.Fragment>
+            <OverflowMenu
+                anchor={renderMoreAction}
+                visible={menuVisible}
+                onBackdropPress={toggleMenu}>
+                <MenuItem accessoryLeft={InfoIcon} title='About' />
+                <MenuItem accessoryLeft={LogoutIcon} title='Logout' />
+            </OverflowMenu>
+        </React.Fragment>
     );
 
     return (
         <Layout style={styles.container} level='1'>
             <TopNavigation
                 {...topNavigationProps}
+                subtitle='Subtitle'
                 alignment='center'
-                accessoryLeft={onBackPress && renderBackAction}
-                accessoryRight={menu && renderMenuAction}
+                accessoryLeft={onBackPress ? renderBackAction : renderMenuAction}
+                accessoryRight={renderRightActions}
             />
             <Divider />
         </Layout>
@@ -62,8 +65,27 @@ const NavbarComponent = ({ menu, menuIcon, backIcon, onBackPress, ...topNavigati
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'red'
+        minHeight: 128,
     },
 });
 
 export default NavbarComponent;
+
+
+
+
+
+
+
+
+    // return (
+    //     <Layout style={styles.container} level='1'>
+    //         <TopNavigation
+    //             {...topNavigationProps}
+    //             alignment='center'
+    //             accessoryLeft={onBackPress && renderBackAction}
+    //             accessoryRight={menu && renderMenuAction}
+    //         />
+    //         <Divider />
+    //     </Layout>
+    // );
