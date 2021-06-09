@@ -6,7 +6,7 @@ import ProfileScreen from '../screens/profile/ProfileScreen';
 const Stack = createStackNavigator();
 
 export const ProfileStackNavigator = () => (
-    <Stack.Navigator headerMode='none'>
+    <Stack.Navigator>
         <Stack.Screen name={AppRoute.PROFILE} component={ProfileScreen} />
     </Stack.Navigator>
 );
