@@ -11,7 +11,7 @@ import { BackIcon, InfoIcon, LogoutIcon, MenuIcon, MoreVerticalIcon } from '../a
 import { StyleSheet } from 'react-native';
 
 
-const NavbarComponent = ({ navigation, ...topNavigationProps }) => {
+const NavbarComponent = ({ navigation, renderBack, renderRightMenu, ...topNavigationProps }) => {
 
     const [menuVisible, setMenuVisible] = React.useState(false);
 
@@ -53,10 +53,10 @@ const NavbarComponent = ({ navigation, ...topNavigationProps }) => {
         <Layout style={styles.container} level='1'>
             <TopNavigation
                 {...topNavigationProps}
-                subtitle='Subtitle'
                 alignment='center'
-                accessoryLeft={renderMenuAction}
-                accessoryRight={renderRightActions}
+                accessoryLeft={renderBack ? renderBackAction : renderMenuAction}
+                accessoryRight={renderRightMenu ? renderRightActions : null}
+                appearance='control'
             />
             <Divider />
         </Layout>

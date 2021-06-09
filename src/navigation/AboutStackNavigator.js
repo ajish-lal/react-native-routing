@@ -1,12 +1,12 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppRoute } from './AppRoutes';
-import ProfileScreen from '../screens/profile/ProfileScreen';
+import AboutScreen from '../screens/home/AboutScreen';
 
 const Stack = createStackNavigator();
 
-export const ProfileStackNavigator = () => (
+export const AboutStackNavigator = () => (
     <Stack.Navigator headerMode='none'>
-        <Stack.Screen name={AppRoute.PROFILE} component={ProfileScreen} />
+        <Stack.Screen name={AppRoute.ABOUT} component={AboutScreen} />
     </Stack.Navigator>
 );

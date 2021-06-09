@@ -8,7 +8,7 @@ const HomeScreen = (props) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <NavbarComponent {...props} title='Home' />
+      <NavbarComponent {...props} title='Home' renderRightMenu={true} />
       <CentreComponent>
         <Text>Home Screen</Text>
         <Text>Home Screen</Text>
