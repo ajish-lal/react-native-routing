@@ -4,7 +4,7 @@ import React, { Fragment } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { AppRoute } from './src/navigation/AppRoutes';
 
@@ -15,10 +15,10 @@ export default function App() {
     <Fragment>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        <NavigationContainer>
+        <SafeAreaProvider>
           <AppNavigator initialRouteName={isAuthorized ? AppRoute.HOME : AppRoute.AUTH} />
-        </NavigationContainer>
-        <StatusBar style="auto" />
+        </SafeAreaProvider>
+        {/* <StatusBar style="auto" /> */}
       </ApplicationProvider>
     </Fragment>
   );

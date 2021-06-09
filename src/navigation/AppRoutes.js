@@ -1,7 +1,8 @@
 export const AppRoute = {
   AUTH: 'Auth',
-  LOGIN: 'Sign In',
-  REGISTER: 'Sign Up',
+  LOGIN: 'Login',
+  LOGOUT: 'Logout',
+  REGISTER: 'Register',
   RESET_PASSWORD: 'Reset Password',
   HOME: 'Home',
   PROFILE: 'Profile',

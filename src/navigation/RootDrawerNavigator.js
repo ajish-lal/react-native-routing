@@ -1,7 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { AppRoute } from './AppRoutes';
-import { HomeIcon, InfoIcon } from '../assets/icons';
+import { HomeIcon, InfoIcon, LogoutIcon } from '../assets/icons';
 import AboutScreen from '../screens/home/AboutScreen';
 import AppDrawer from '../components/AppDrawer';
 import { HomeBottomNavigator } from './HomeBottomNavigator';
@@ -13,12 +13,17 @@ export const RootDrawerNavigator = () => (
         <Drawer.Screen
             name={AppRoute.HOME}
             component={HomeBottomNavigator}
-            options={{ title: 'Home', drawerIcon: HomeIcon }}
+            options={{ title: AppRoute.HOME, drawerIcon: HomeIcon }}
         />
         <Drawer.Screen
             name={AppRoute.ABOUT}
             component={AboutScreen}
-            options={{ title: 'About', drawerIcon: InfoIcon }}
+            options={{ title: AppRoute.ABOUT, drawerIcon: InfoIcon }}
+        />
+        <Drawer.Screen
+            name={AppRoute.LOGOUT}
+            component={AboutScreen}
+            options={{ title: AppRoute.LOGOUT, drawerIcon: LogoutIcon }}
         />
     </Drawer.Navigator>
 );

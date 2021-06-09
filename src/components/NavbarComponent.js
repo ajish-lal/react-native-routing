@@ -1,15 +1,16 @@
 import React from 'react';
 import {
+    Layout,
     OverflowMenu,
     TopNavigation,
     TopNavigationAction,
 } from '@ui-kitten/components';
 import { BackIcon, MoreVerticalIcon } from '../assets/icons';
+import { StyleSheet } from 'react-native';
 
 
-const ToolbarComponent = (props) => {
+const NavbarComponent = ({ menu, menuIcon, backIcon, onBackPress, ...topNavigationProps }) => {
 
-    const { menu, backIcon, menuIcon, onBackPress, ...topNavigationProps } = props;
     const [menuVisible, setMenuVisible] = React.useState(false);
 
     const onMenuSelect = (index) => {
@@ -22,7 +23,7 @@ const ToolbarComponent = (props) => {
 
     const renderMenuAnchorAction = () => (
         <TopNavigationAction
-            icon={props.menuIcon || MoreVerticalIcon}
+            icon={menuIcon || MoreVerticalIcon}
             onPress={onMenuActionPress}
         />
     );
@@ -40,19 +41,21 @@ const ToolbarComponent = (props) => {
 
     const renderBackAction = () => (
         <TopNavigationAction
-            icon={props.backIcon || BackIcon}
+            icon={backIcon || BackIcon}
             onPress={onBackPress}
         />
     );
 
     return (
-        <TopNavigation
-            {...topNavigationProps}
-            alignment='center'
-            accessoryLeft={onBackPress && renderBackAction}
-            accessoryRight={menu && renderMenuAction}
-        />
+        <Layout level='1'>
+            <TopNavigation
+                {...topNavigationProps}
+                alignment='center'
+                accessoryLeft={onBackPress && renderBackAction}
+                accessoryRight={menu && renderMenuAction}
+            />
+        </Layout>
     );
 };
 
-export default ToolbarComponent;
+export default NavbarComponent;
