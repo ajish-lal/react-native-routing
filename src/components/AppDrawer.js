@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Divider, Drawer, DrawerItem, IndexPath } from '@ui-kitten/components';
 import { ForwardIcon } from '../assets/icons';
 import { ImageBackground, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AppDrawer = ({ navigation, state, descriptors }) => {
 
@@ -18,12 +19,14 @@ const AppDrawer = ({ navigation, state, descriptors }) => {
     };
 
     return (
-        <Drawer
-            header={Header}
-            selectedIndex={new IndexPath(state.index)}
-            onSelect={index => navigation.navigate(state.routeNames[index.row])}>
-            {state.routes.map(createDrawerItemForRoute)}
-        </Drawer>
+        <SafeAreaView>
+            <Drawer
+                header={Header}
+                selectedIndex={new IndexPath(state.index)}
+                onSelect={index => navigation.navigate(state.routeNames[index.row])}>
+                {state.routes.map(createDrawerItemForRoute)}
+            </Drawer>
+        </SafeAreaView>
     );
 };
 

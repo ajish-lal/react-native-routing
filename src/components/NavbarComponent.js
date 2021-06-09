@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Divider,
     Layout,
     OverflowMenu,
     TopNavigation,
@@ -47,15 +48,22 @@ const NavbarComponent = ({ menu, menuIcon, backIcon, onBackPress, ...topNavigati
     );
 
     return (
-        <Layout level='1'>
+        <Layout style={styles.container} level='1'>
             <TopNavigation
                 {...topNavigationProps}
                 alignment='center'
                 accessoryLeft={onBackPress && renderBackAction}
                 accessoryRight={menu && renderMenuAction}
             />
+            <Divider />
         </Layout>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'red'
+    },
+});
 
 export default NavbarComponent;

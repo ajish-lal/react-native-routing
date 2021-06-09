@@ -25,6 +25,10 @@ export const MoreVerticalIcon = (style) => (
   <Icon {...style} name='more-vertical' />
 );
 
+export const EditIcon = (props) => (
+  <Icon {...props} name='edit'/>
+);
+
 export const LogoutIcon = (style) => (
   <Icon {...style} name='log-out-outline' />
 );

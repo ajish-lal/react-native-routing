@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'react-native';
 import React, { Fragment } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
@@ -18,7 +19,7 @@ export default function App() {
         <SafeAreaProvider>
           <AppNavigator initialRouteName={isAuthorized ? AppRoute.HOME : AppRoute.AUTH} />
         </SafeAreaProvider>
-        {/* <StatusBar style="auto" /> */}
+        <StatusBar barStyle='light-content' backgroundColor='#2980B7' />
       </ApplicationProvider>
     </Fragment>
   );
