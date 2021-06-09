@@ -21,7 +21,7 @@ const LoginScreen = (props) => {
     props.navigation.navigate(AppRoute.HOME);
   };
 
-  const navigateSignUp = () => {
+  const navigateRegister = () => {
     props.navigation.navigate(AppRoute.REGISTER);
   };
 
@@ -65,7 +65,7 @@ const LoginScreen = (props) => {
       <Button
         style={styles.submitButton}
         onPress={props.handleSubmit}>
-        SIGN IN
+        LOGIN
       </Button>
     </Fragment>
   );
@@ -78,7 +78,7 @@ const LoginScreen = (props) => {
       />
       <Layout style={styles.formContainer}>
         <Formik
-          // initialValues={SignInData.empty()}
+          initialValues={initFormValues}
           // validationSchema={SignInSchema}
           onSubmit={onFormSubmit}>
           {renderForm}
@@ -87,13 +87,18 @@ const LoginScreen = (props) => {
           style={styles.noAccountButton}
           appearance='ghost'
           status='basic'
-          onPress={navigateSignUp}>
+          onPress={navigateRegister}>
           Don't have an account?
         </Button>
       </Layout>
     </React.Fragment>
   );
 };
+
+const initFormValues = {
+  email: '',
+  password: ''
+}
 
 const styles = StyleSheet.create({
   appBar: {

@@ -8,8 +8,7 @@ import {
     TopNavigationAction,
 } from '@ui-kitten/components';
 import { BackIcon, InfoIcon, LogoutIcon, MenuIcon, MoreVerticalIcon } from '../assets/icons';
-import { StyleSheet } from 'react-native';
-
+import { AppRoute } from '../navigation/AppRoutes';
 
 const NavbarComponent = ({ navigation, renderBack, renderRightMenu, ...topNavigationProps }) => {
 
@@ -17,6 +16,11 @@ const NavbarComponent = ({ navigation, renderBack, renderRightMenu, ...topNaviga
 
     const toggleMenu = () => {
         setMenuVisible(!menuVisible);
+    };
+
+    const goTo = (route) => {
+        setMenuVisible(!menuVisible);
+        navigation.navigate(route);
     };
 
     const renderMenuAction = () => (
@@ -43,49 +47,21 @@ const NavbarComponent = ({ navigation, renderBack, renderRightMenu, ...topNaviga
                 anchor={renderMoreAction}
                 visible={menuVisible}
                 onBackdropPress={toggleMenu}>
-                <MenuItem accessoryLeft={InfoIcon} title='About' />
-                <MenuItem accessoryLeft={LogoutIcon} title='Logout' />
+                <MenuItem accessoryLeft={InfoIcon} title='About' onPress={() => goTo(AppRoute.ABOUT)} />
+                <MenuItem accessoryLeft={LogoutIcon} title='Logout' onPress={() => goTo(AppRoute.LOGOUT)} />
             </OverflowMenu>
         </React.Fragment>
     );
 
     return (
-        <Layout style={styles.container} level='1'>
-            <TopNavigation
-                {...topNavigationProps}
-                alignment='center'
-                accessoryLeft={renderBack ? renderBackAction : renderMenuAction}
-                accessoryRight={renderRightMenu ? renderRightActions : null}
-                appearance='control'
-            />
-            <Divider />
-        </Layout>
+        <TopNavigation
+            {...topNavigationProps}
+            alignment='center'
+            accessoryLeft={renderBack ? renderBackAction : renderMenuAction}
+            accessoryRight={renderRightMenu ? renderRightActions : null}
+            appearance='control'
+        />
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        minHeight: 128,
-    },
-});
-
 export default NavbarComponent;
-
-
-
-
-
-
-
-
-    // return (
-    //     <Layout style={styles.container} level='1'>
-    //         <TopNavigation
-    //             {...topNavigationProps}
-    //             alignment='center'
-    //             accessoryLeft={onBackPress && renderBackAction}
-    //             accessoryRight={menu && renderMenuAction}
-    //         />
-    //         <Divider />
-    //     </Layout>
-    // );

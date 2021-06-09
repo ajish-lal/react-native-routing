@@ -5,6 +5,7 @@ import { HomeIcon, InfoIcon, LogoutIcon } from '../assets/icons';
 import AppDrawer from '../components/AppDrawer';
 import { HomeBottomNavigator } from './HomeBottomNavigator';
 import { AboutStackNavigator } from './AboutStackNavigator';
+import LoginScreen from '../screens/auth/LoginScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,7 +23,7 @@ export const RootDrawerNavigator = () => (
         />
         <Drawer.Screen
             name={AppRoute.LOGOUT}
-            component={AboutStackNavigator}
+            component={LoginScreen}
             options={{ title: AppRoute.LOGOUT, drawerIcon: LogoutIcon }}
         />
     </Drawer.Navigator>
