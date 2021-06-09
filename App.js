@@ -11,7 +11,7 @@ import { AppRoute } from './src/navigation/AppRoutes';
 import { default as theme } from './src/assets/theme.json';
 
 export default function App() {
-  const isAuthorized = true;
+  const isAuthorized = false;
 
   return (
     <Fragment>
