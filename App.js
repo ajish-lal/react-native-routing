@@ -8,6 +8,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { AppRoute } from './src/navigation/AppRoutes';
+import { default as theme } from './src/assets/theme.json';
 
 export default function App() {
   const isAuthorized = true;
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <Fragment>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
+      <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
         <SafeAreaProvider>
           <AppNavigator initialRouteName={isAuthorized ? AppRoute.HOME : AppRoute.AUTH} />
         </SafeAreaProvider>
