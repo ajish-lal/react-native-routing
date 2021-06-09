@@ -13,6 +13,14 @@ export const PersonIcon = (style) => (
   <Icon {...style} name='person-outline' />
 );
 
+export const BellIcon = (props) => (
+  <Icon {...props} name='bell-outline' />
+);
+
+export const ForwardIcon = (props) => (
+  <Icon {...props} name='arrow-ios-forward' />
+);
+
 export const MoreVerticalIcon = (style) => (
   <Icon {...style} name='more-vertical' />
 );

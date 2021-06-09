@@ -1,33 +1,45 @@
-import React from 'react';
-import { Drawer, DrawerItem, Layout } from '@ui-kitten/components';
+import React, { Fragment } from 'react';
+import { Divider, Drawer, DrawerItem, IndexPath } from '@ui-kitten/components';
+import { HomeIcon, BellIcon, ForwardIcon } from '../../assets/icons';
+import { ImageBackground, StyleSheet } from 'react-native';
 
-const HomeDrawer = (props) => {
-
-  const onMenuItemSelect = (index) => {
-    const selectedTabRoute = props.state.routeNames[index.row];
-    props.navigation.navigate(selectedTabRoute);
-    props.navigation.closeDrawer();
-  };
-
-  const createDrawerItemForRoute = (route, index) => {
-    const { options } = props.descriptors[route.key];
-    return (
-      <DrawerItem
-        key={index}
-        title={route.name}
-        accessoryLeft={options.drawerIcon}
-      />
-    );
-  };
+const HomeDrawer = ({ navigation, state }) => {
 
   return (
-    <Layout>
-      <Drawer
-        data={props.state.routes.map(createDrawerItemForRoute)}
-        onSelect={onMenuItemSelect}
+    <Drawer
+      header={Header}
+      selectedIndex={new IndexPath(state.index)}
+      onSelect={index => navigation.navigate(state.routeNames[index.row])}>
+      <DrawerItem
+        title='Home'
+        accessoryLeft={HomeIcon}
+        accessoryRight={ForwardIcon}
       />
-    </Layout>
+      <DrawerItem
+        title='Notification'
+        accessoryLeft={BellIcon}
+        accessoryRight={ForwardIcon}
+      />
+    </Drawer>
   );
 };
+
+const Header = (props) => (
+  <Fragment>
+    <ImageBackground
+      style={[props.style, styles.header]}
+      source={require('../../assets/icon.png')}
+    />
+    <Divider />
+  </Fragment>
+);
+
+const styles = StyleSheet.create({
+  header: {
+    height: 128,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});
 
 export default HomeDrawer;

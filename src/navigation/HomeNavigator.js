@@ -6,8 +6,8 @@ import { AppRoute } from './AppRoutes';
 import { HomeIcon, InfoIcon, PersonIcon } from '../assets/icons';
 import AboutScreen from '../screens/home/AboutScreen';
 import HomeTabBar from '../screens/home/HomeTabBar';
-import HomeDrawer from '../screens/home/HomeDrawer';
 import HomeScreen from '../screens/home/HomeScreen';
+import AppDrawer from '../components/AppDrawer';
 
 const Drawer = createDrawerNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -28,7 +28,7 @@ const HomeBottomNavigator = () => (
 );
 
 export const HomeNavigator = () => (
-    <Drawer.Navigator drawerContent={props => <HomeDrawer {...props} />}>
+    <Drawer.Navigator drawerContent={props => <AppDrawer {...props} />}>
         <Drawer.Screen
             name={AppRoute.HOME}
             component={HomeBottomNavigator}
