@@ -1,15 +1,13 @@
 import React, { Fragment } from 'react';
-import { Button, CheckBox, Layout, Text } from '@ui-kitten/components';
+import { Button, Layout } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppRoute } from '../../navigation/AppRoutes';
-import FormInputComponent from '../../components/FormInputComponent';
+import FormComponent from '../../components/FormComponent';
 import { StyleSheet } from 'react-native';
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
-import { Formik } from 'formik';
 import NavbarComponent from '../../components/NavbarComponent';
 
 const RegisterScreen = (props) => {
-
   const onFormSubmit = (values) => {
     navigateHome();
   };
@@ -24,25 +22,15 @@ const RegisterScreen = (props) => {
 
   const renderForm = (props) => (
     <Fragment>
-      <FormInputComponent
-        id='email'
+      <FormComponent
+        id="email"
         style={styles.formControl}
-        placeholder='Email'
-        keyboardType='email-address'
+        placeholder="Email"
+        keyboardType="email-address"
       />
-      <FormInputComponent
-        id='password'
-        style={styles.formControl}
-        placeholder='Password'
-      />
-      <FormInputComponent
-        id='username'
-        style={styles.formControl}
-        placeholder='Username'
-      />
-      <Button
-        style={styles.submitButton}
-        onPress={props.handleSubmit}>
+      <FormComponent id="password" style={styles.formControl} placeholder="Password" />
+      <FormComponent id="username" style={styles.formControl} placeholder="Username" />
+      <Button style={styles.submitButton} onPress={props.handleSubmit}>
         REGISTER
       </Button>
     </Fragment>
@@ -50,26 +38,21 @@ const RegisterScreen = (props) => {
 
   return (
     <Fragment>
-      <ImageBackground
-        style={styles.appBar}
-        source={require('../../assets/image-background.jpeg')}>
-        <NavbarComponent
-          {...props}
-          renderBack={true}
-        />
+      <ImageBackground style={styles.appBar} source={require('../../assets/image-background.jpeg')}>
+        <NavbarComponent {...props} renderBack={true} />
       </ImageBackground>
       <Layout style={styles.formContainer}>
-        <Formik
-          initialValues={initFormValues}
-          // validationSchema={SignUpSchema}
-          onSubmit={onFormSubmit}>
-          {renderForm}
-        </Formik>
+        <FormComponent
+          formData={formData}
+          buttonLabel={'REGISTER'}
+          onFormSubmit={onFormSubmit}
+        ></FormComponent>
         <Button
           style={styles.haveAccountButton}
-          appearance='ghost'
-          status='basic'
-          onPress={navigateLogin}>
+          appearance="ghost"
+          status="basic"
+          onPress={navigateLogin}
+        >
           Already have an account?
         </Button>
       </Layout>
@@ -77,11 +60,36 @@ const RegisterScreen = (props) => {
   );
 };
 
-const initFormValues = {
-  email: '',
-  password: '',
-  username: ''
-}
+const formData = [
+  {
+    name: 'email',
+    defaultValue: '',
+    placeholder: 'Email',
+    keyboardType: 'email-address',
+    error: 'Invalid email',
+    rules: {
+      required: true,
+      pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z]+\.[a-zA-Z]+$/,
+    },
+  },
+  {
+    name: 'password',
+    defaultValue: '',
+    placeholder: 'Password',
+    error: 'Password must be at least 8 characters',
+    rules: { required: true, minLength: 8 },
+    isPassword: true,
+  },
+  {
+    name: 'username',
+    defaultValue: '',
+    placeholder: 'Username',
+    error: 'Username cannot be empty',
+    rules: {
+      required: true,
+    },
+  },
+];
 
 const styles = StyleSheet.create({
   appBar: {

@@ -1,15 +1,12 @@
 import React, { Fragment } from 'react';
-import { Button, CheckBox, Layout, Text } from '@ui-kitten/components';
+import { Layout } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AppRoute } from '../../navigation/AppRoutes';
-import FormInputComponent from '../../components/FormInputComponent';
+import FormComponent from '../../components/FormComponent';
 import { StyleSheet } from 'react-native';
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
-import { Formik } from 'formik';
 import NavbarComponent from '../../components/NavbarComponent';
 
 const ResetPasswordScreen = (props) => {
-
   const onFormSubmit = (values) => {
     navigateLogin();
   };
@@ -18,47 +15,35 @@ const ResetPasswordScreen = (props) => {
     props.navigation.goBack();
   };
 
-  const renderForm = (props) => (
-    <Fragment>
-      <FormInputComponent
-        id='email'
-        style={styles.formControl}
-        placeholder='Email'
-        keyboardType='email-address'
-      />
-      <Button
-        style={styles.button}
-        onPress={props.handleSubmit}>
-        RESET
-      </Button>
-    </Fragment>
-  );
-
   return (
     <Fragment>
-      <ImageBackground
-        style={styles.appBar}
-        source={require('../../assets/image-background.jpeg')}>
-        <NavbarComponent
-          renderBack={true}
-          {...props}
-        />
+      <ImageBackground style={styles.appBar} source={require('../../assets/image-background.jpeg')}>
+        <NavbarComponent renderBack={true} {...props} />
       </ImageBackground>
       <Layout style={styles.formContainer}>
-        <Formik
-          initialValues={initFormValues}
-          // validationSchema={ResetPasswordSchema}
-          onSubmit={onFormSubmit}>
-          {renderForm}
-        </Formik>
+        <FormComponent
+          formData={formData}
+          buttonLabel={'RESET'}
+          onFormSubmit={onFormSubmit}
+        ></FormComponent>
       </Layout>
     </Fragment>
   );
 };
 
-const initFormValues = {
-  email: ''
-}
+const formData = [
+  {
+    name: 'email',
+    defaultValue: '',
+    placeholder: 'Email',
+    keyboardType: 'email-address',
+    error: 'Invalid email',
+    rules: {
+      required: true,
+      pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z]+\.[a-zA-Z]+$/,
+    },
+  },
+];
 
 const styles = StyleSheet.create({
   appBar: {

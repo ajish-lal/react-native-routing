@@ -1,16 +1,16 @@
 import React from 'react';
 import { Icon } from '@ui-kitten/components';
 
-export const BackIcon = (style) => (
-  <Icon {...style} name='arrow-back' />
+export const BackIcon = (props) => (
+  <Icon {...props} name='arrow-back' />
 );
 
-export const LayoutIcon = (style) => (
-  <Icon {...style} name='layout-outline' />
+export const LayoutIcon = (props) => (
+  <Icon {...props} name='layout-outline' />
 );
 
-export const PersonIcon = (style) => (
-  <Icon {...style} name='person-outline' />
+export const PersonIcon = (props) => (
+  <Icon {...props} name='person-outline' />
 );
 
 export const BellIcon = (props) => (
@@ -21,60 +21,60 @@ export const ForwardIcon = (props) => (
   <Icon {...props} name='arrow-ios-forward' />
 );
 
-export const MoreVerticalIcon = (style) => (
-  <Icon {...style} name='more-vertical' />
+export const MoreVerticalIcon = (props) => (
+  <Icon {...props} name='more-vertical' />
 );
 
 export const EditIcon = (props) => (
   <Icon {...props} name='edit'/>
 );
 
-export const LogoutIcon = (style) => (
-  <Icon {...style} name='log-out-outline' />
+export const LogoutIcon = (props) => (
+  <Icon {...props} name='log-out-outline' />
 );
 
-export const InfoIcon = (style) => (
-  <Icon {...style} name='info-outline' />
+export const InfoIcon = (props) => (
+  <Icon {...props} name='info-outline' />
 );
 
-export const AlertTriangleIcon = (style) => (
-  <Icon {...style} name='alert-triangle-outline' />
+export const AlertTriangleIcon = (props) => (
+  <Icon {...props} name='alert-triangle-outline' />
 );
 
-export const EyeIcon = (style) => (
-  <Icon {...style} name='eye-outline' />
+export const EyeIcon = (props) => (
+  <Icon {...props} name='eye-outline' />
 );
 
-export const EyeOffIcon = (style) => (
-  <Icon {...style} name='eye-off-outline' />
+export const EyeOffIcon = (props) => (
+  <Icon {...props} name='eye-off-outline' />
 );
 
-export const MenuIcon = (style) => (
-  <Icon {...style} name='menu-outline' />
+export const MenuIcon = (props) => (
+  <Icon {...props} name='menu-outline' />
 );
 
-export const HomeIcon = (style) => (
-  <Icon {...style} name='home-outline' />
+export const HomeIcon = (props) => (
+  <Icon {...props} name='home-outline' />
 );
 
-export const DoneIcon = (style) => (
-  <Icon {...style} name='checkmark-outline' />
+export const DoneIcon = (props) => (
+  <Icon {...props} name='checkmark-outline' />
 );
 
-export const DoneAllIcon = (style) => (
-  <Icon {...style} name='done-all-outline' />
+export const DoneAllIcon = (props) => (
+  <Icon {...props} name='done-all-outline' />
 );
 
-export const GridIcon = (style) => (
-  <Icon {...style} name='grid-outline' />
+export const GridIcon = (props) => (
+  <Icon {...props} name='grid-outline' />
 );
 
-export const SearchIcon = (style) => (
-  <Icon {...style} name='search-outline' />
+export const SearchIcon = (props) => (
+  <Icon {...props} name='search-outline' />
 );
 
-export const PlusIcon = (style) => (
-  <Icon {...style} name='plus-outline' />
+export const PlusIcon = (props) => (
+  <Icon {...props} name='plus-outline' />
 );
 
 

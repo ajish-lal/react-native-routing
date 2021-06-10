@@ -1,19 +1,16 @@
 import React, { Fragment } from 'react';
 import { Button, CheckBox, Layout, Text } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { EyeIcon, EyeOffIcon } from '../../assets/icons';
 import { AppRoute } from '../../navigation/AppRoutes';
-import FormInputComponent from '../../components/FormInputComponent';
+import FormComponent from '../../components/FormComponent';
 import { StyleSheet } from 'react-native';
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
-import { Formik } from 'formik';
 
 const LoginScreen = (props) => {
-
   const [shouldRemember, setShouldRemember] = React.useState(false);
-  const [passwordVisible, setPasswordVisible] = React.useState(false);
 
   const onFormSubmit = (values) => {
+    console.log(values);
     navigateHome();
   };
 
@@ -29,47 +26,6 @@ const LoginScreen = (props) => {
     props.navigation.navigate(AppRoute.RESET_PASSWORD);
   };
 
-  const onPasswordIconPress = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  const renderForm = (props) => (
-    <Fragment>
-      <FormInputComponent
-        id='email'
-        style={styles.formControl}
-        placeholder='Email'
-        keyboardType='email-address'
-      />
-      <FormInputComponent
-        id='password'
-        style={styles.formControl}
-        placeholder='Password'
-        secureTextEntry={!passwordVisible}
-        icon={passwordVisible ? EyeIcon : EyeOffIcon}
-        onIconPress={onPasswordIconPress}
-      />
-      <Layout style={styles.resetPasswordContainer}>
-        <CheckBox
-          style={styles.formControl}
-          checked={shouldRemember}
-          onChange={setShouldRemember}
-        >Remember Me</CheckBox>
-        <Button
-          appearance='ghost'
-          status='basic'
-          onPress={navigateResetPassword}>
-          Forgot password?
-        </Button>
-      </Layout>
-      <Button
-        style={styles.submitButton}
-        onPress={props.handleSubmit}>
-        LOGIN
-      </Button>
-    </Fragment>
-  );
-
   return (
     <React.Fragment>
       <ImageBackground
@@ -77,17 +33,26 @@ const LoginScreen = (props) => {
         source={require('../../assets/image-background.jpeg')}
       />
       <Layout style={styles.formContainer}>
-        <Formik
-          initialValues={initFormValues}
-          // validationSchema={SignInSchema}
-          onSubmit={onFormSubmit}>
-          {renderForm}
-        </Formik>
+        <FormComponent formData={formData} buttonLabel={'LOGIN'} onFormSubmit={onFormSubmit}>
+          <Layout style={styles.resetPasswordContainer}>
+            <CheckBox
+              style={styles.formControl}
+              checked={shouldRemember}
+              onChange={setShouldRemember}
+            >
+              Remember Me
+            </CheckBox>
+            <Button appearance="ghost" status="basic" onPress={navigateResetPassword}>
+              Forgot password?
+            </Button>
+          </Layout>
+        </FormComponent>
         <Button
           style={styles.noAccountButton}
-          appearance='ghost'
-          status='basic'
-          onPress={navigateRegister}>
+          appearance="ghost"
+          status="basic"
+          onPress={navigateRegister}
+        >
           Don't have an account?
         </Button>
       </Layout>
@@ -95,10 +60,27 @@ const LoginScreen = (props) => {
   );
 };
 
-const initFormValues = {
-  email: '',
-  password: ''
-}
+const formData = [
+  {
+    name: 'email',
+    defaultValue: '',
+    placeholder: 'Email',
+    keyboardType: 'email-address',
+    error: 'Invalid email',
+    rules: {
+      required: true,
+      pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z]+\.[a-zA-Z]+$/,
+    },
+  },
+  {
+    name: 'password',
+    defaultValue: '',
+    placeholder: 'Password',
+    error: 'Password must be at least 8 characters',
+    rules: { required: true, minLength: 8 },
+    isPassword: true,
+  },
+];
 
 const styles = StyleSheet.create({
   appBar: {
@@ -115,9 +97,6 @@ const styles = StyleSheet.create({
   },
   formControl: {
     marginVertical: 4,
-  },
-  submitButton: {
-    marginVertical: 24,
   },
   noAccountButton: {
     alignSelf: 'center',
