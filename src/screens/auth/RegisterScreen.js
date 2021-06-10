@@ -20,22 +20,6 @@ const RegisterScreen = (props) => {
     props.navigation.navigate(AppRoute.LOGIN);
   };
 
-  const renderForm = (props) => (
-    <Fragment>
-      <FormComponent
-        id="email"
-        style={styles.formControl}
-        placeholder="Email"
-        keyboardType="email-address"
-      />
-      <FormComponent id="password" style={styles.formControl} placeholder="Password" />
-      <FormComponent id="username" style={styles.formControl} placeholder="Username" />
-      <Button style={styles.submitButton} onPress={props.handleSubmit}>
-        REGISTER
-      </Button>
-    </Fragment>
-  );
-
   return (
     <Fragment>
       <ImageBackground style={styles.appBar} source={require('../../assets/image-background.jpeg')}>

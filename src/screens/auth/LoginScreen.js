@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Button, CheckBox, Layout, Text } from '@ui-kitten/components';
+import { Button, CheckBox, Layout } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppRoute } from '../../navigation/AppRoutes';
 import FormComponent from '../../components/FormComponent';
@@ -10,7 +10,6 @@ const LoginScreen = (props) => {
   const [shouldRemember, setShouldRemember] = React.useState(false);
 
   const onFormSubmit = (values) => {
-    console.log(values);
     navigateHome();
   };
 
@@ -27,7 +26,7 @@ const LoginScreen = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <ImageBackground
         style={styles.appBar}
         source={require('../../assets/image-background.jpeg')}
@@ -56,7 +55,7 @@ const LoginScreen = (props) => {
           Don't have an account?
         </Button>
       </Layout>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
