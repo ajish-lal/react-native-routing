@@ -73,6 +73,15 @@ const formData = [
       required: true,
     },
   },
+  {
+    name: 'location',
+    defaultValue: '',
+    placeholder: 'Location',
+    error: 'Location cannot be empty',
+    rules: {
+      required: true,
+    },
+  },
 ];
 
 const styles = StyleSheet.create({

@@ -8,7 +8,7 @@ import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen';
 const Stack = createStackNavigator();
 
 export const AuthNavigator = () => (
-  <Stack.Navigator headerMode='none'>
+  <Stack.Navigator headerMode="none">
     <Stack.Screen name={AppRoute.LOGIN} component={LoginScreen} />
     <Stack.Screen name={AppRoute.REGISTER} component={RegisterScreen} />
     <Stack.Screen name={AppRoute.RESET_PASSWORD} component={ResetPasswordScreen} />
