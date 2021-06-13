@@ -64,7 +64,7 @@ const RegisterScreen = (props) => {
             style={{ marginVertical: 4 }}
           >
             {data.map((city, index) => (
-              <AutocompleteItem key={index} title={city.city_name} />
+              <AutocompleteItem key={index} title={`${city.city_name}, ${city.state_name}`} />
             ))}
           </Autocomplete>
           <Button style={{ marginVertical: 24 }} onPress={getCurrentLocation}>
