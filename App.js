@@ -9,6 +9,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { AppRoute } from './src/navigation/AppRoutes';
 import { default as theme } from './src/assets/theme.json';
+import LocationProvider from './src/providers/location';
 
 export default function App() {
   const isAuthorized = false;
@@ -18,9 +19,11 @@ export default function App() {
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
         <SafeAreaProvider>
-          <AppNavigator initialRouteName={isAuthorized ? AppRoute.HOME : AppRoute.AUTH} />
+          <LocationProvider>
+            <AppNavigator initialRouteName={isAuthorized ? AppRoute.HOME : AppRoute.AUTH} />
+          </LocationProvider>
         </SafeAreaProvider>
-        <StatusBar barStyle='light-content' backgroundColor='#2980B7' />
+        <StatusBar barStyle="light-content" backgroundColor="#2980B7" />
       </ApplicationProvider>
     </Fragment>
   );

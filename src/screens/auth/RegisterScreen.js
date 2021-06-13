@@ -1,13 +1,19 @@
 import React, { Fragment } from 'react';
-import { Button, Layout } from '@ui-kitten/components';
+import { Autocomplete, AutocompleteItem, Button, Layout } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppRoute } from '../../navigation/AppRoutes';
 import FormComponent from '../../components/FormComponent';
 import { StyleSheet } from 'react-native';
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 import NavbarComponent from '../../components/NavbarComponent';
+import { useLocation } from '../../providers/location';
+import locationList from '../../utils/location_list_updated.json';
 
 const RegisterScreen = (props) => {
+  const [value, setValue] = React.useState('');
+  const [data, setData] = React.useState([]);
+  const { getCurrentLocation } = useLocation();
+
   const onFormSubmit = (values) => {
     navigateHome();
   };
@@ -20,17 +26,51 @@ const RegisterScreen = (props) => {
     props.navigation.navigate(AppRoute.LOGIN);
   };
 
+  const clearInput = () => {
+    setValue('');
+    setData([]);
+  };
+
+  const onSelect = (index) => {
+    setValue(data[index].city_name);
+  };
+
+  const onChangeText = (query) => {
+    setValue(query);
+    if (query.length > 2) {
+      setData(
+        locationList.filter((cityObj) =>
+          cityObj.city_name.toLowerCase().startsWith(query.toLowerCase())
+        )
+      );
+    } else {
+      setData([]);
+    }
+  };
+
   return (
     <Fragment>
       <ImageBackground style={styles.appBar} source={require('../../assets/image-background.jpeg')}>
         <NavbarComponent {...props} renderBack={true} />
       </ImageBackground>
       <Layout style={styles.formContainer}>
-        <FormComponent
-          formData={formData}
-          buttonLabel={'REGISTER'}
-          onFormSubmit={onFormSubmit}
-        ></FormComponent>
+        <FormComponent formData={formData} buttonLabel={'REGISTER'} onFormSubmit={onFormSubmit}>
+          <Autocomplete
+            placeholder="Search Location"
+            value={value}
+            onSelect={onSelect}
+            onChangeText={onChangeText}
+            onFocus={clearInput}
+            style={{ marginVertical: 4 }}
+          >
+            {data.map((city, index) => (
+              <AutocompleteItem key={index} title={city.city_name} />
+            ))}
+          </Autocomplete>
+          <Button style={{ marginVertical: 24 }} onPress={getCurrentLocation}>
+            Get Location
+          </Button>
+        </FormComponent>
         <Button
           style={styles.haveAccountButton}
           appearance="ghost"
@@ -69,15 +109,6 @@ const formData = [
     defaultValue: '',
     placeholder: 'Username',
     error: 'Username cannot be empty',
-    rules: {
-      required: true,
-    },
-  },
-  {
-    name: 'location',
-    defaultValue: '',
-    placeholder: 'Location',
-    error: 'Location cannot be empty',
     rules: {
       required: true,
     },
